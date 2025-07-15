@@ -7,10 +7,12 @@ import Header from '@/components/layout/header';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { BookOpen, PlusCircle, Brain } from 'lucide-react';
+import LoadingPage from '@/components/layout/loading-page';
 
 export default function DashboardPage() {
   const [user, setUser] = useState<{ username: string } | null>(null);
   const [studySessions, setStudySessions] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -23,7 +25,7 @@ export default function DashboardPage() {
       if (sessionData) {
         setStudySessions(JSON.parse(sessionData));
       }
-
+      setIsLoading(false);
     } else {
       router.replace('/');
     }
@@ -39,15 +41,8 @@ export default function DashboardPage() {
     setStudySessions(prev => prev + 1);
   };
 
-  if (!user) {
-    return (
-        <div className="flex flex-col min-h-screen bg-background text-foreground">
-            <Header />
-            <main className="flex-1 flex items-center justify-center">
-                <p>Loading...</p>
-            </main>
-        </div>
-    );
+  if (isLoading || !user) {
+    return <LoadingPage />;
   }
 
   return (

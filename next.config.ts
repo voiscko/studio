@@ -1,3 +1,4 @@
+
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
@@ -17,14 +18,14 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
       {
-        protocol: 'http',
+        protocol: 'https',
         hostname: 'i.imgflip.com',
         port: '',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'www.pngitem.com',
+        hostname: 'i.imgur.com',
         port: '',
         pathname: '/**',
       },

@@ -1,6 +1,6 @@
 
 'use client';
-import { ChevronLeft, ChevronRight, LogOut, User } from 'lucide-react';
+import { ChevronLeft, ChevronRight, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import LoginDialog from '@/components/auth/login-dialog';
 import RegistrationDialog from '@/components/auth/registration-dialog';
@@ -21,6 +21,7 @@ export default function Header() {
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [auth, setAuth] = useState<{username: string} | null>(null);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const router = useRouter();
 
@@ -29,9 +30,7 @@ export default function Header() {
       const authData = localStorage.getItem('studybuddy-auth');
       setAuth(authData ? JSON.parse(authData) : null);
     }
-    // Check on mount
     checkAuth();
-    // Listen for storage changes
     window.addEventListener('storage', checkAuth);
     return () => {
       window.removeEventListener('storage', checkAuth);
@@ -40,23 +39,27 @@ export default function Header() {
 
   const handleRegistrationSuccess = () => {
     setIsRegistrationOpen(false);
-    const authData = localStorage.getItem('studybuddy-auth');
-    setAuth(authData ? JSON.parse(authData) : null);
     router.push('/dashboard');
   };
 
   const handleLoginSuccess = () => {
     setIsLoginOpen(false);
-    const authData = localStorage.getItem('studybuddy-auth');
-    setAuth(authData ? JSON.parse(authData) : null);
     router.push('/dashboard');
   }
 
   const handleSignOut = () => {
+    setIsLoggingOut(true);
     localStorage.removeItem('studybuddy-auth');
     localStorage.removeItem('studybuddy-user');
+    window.dispatchEvent(new Event('storage'));
     router.push('/');
-    setAuth(null);
+    setTimeout(() => {
+      setIsLoggingOut(false);
+    }, 500); 
+  }
+  
+  if (isLoggingOut) {
+    return <div className="h-16"></div>; // Placeholder to prevent layout shift
   }
 
   return (
