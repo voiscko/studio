@@ -1,130 +1,97 @@
 'use client';
 
 import Header from '@/components/layout/header';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, X } from 'lucide-react';
+import { BookOpen, Target, Clock, PlusCircle } from 'lucide-react';
+import Image from 'next/image';
 
-const plans = [
+const studyActivities = [
   {
-    name: 'Free',
-    price: '$0',
-    description: 'Basic features to get started',
-    features: [
-      { text: 'Basic flashcards', included: true },
-      { text: '30 min study timer', included: true },
-      { text: '5 note collections', included: true },
-      { text: 'No progress analytics', included: false },
-      { text: 'No cloud sync', included: false },
-    ],
-    buttonText: 'Current Plan',
-    buttonVariant: 'secondary',
-    popular: false,
+    icon: <BookOpen className="h-6 w-6 text-primary" />,
+    title: 'Flashcards Reviewed',
+    value: '1,250',
+    change: '+50 today',
   },
   {
-    name: 'Premium',
-    price: '$9.99',
-    description: 'Full features for serious students',
-    features: [
-      { text: 'Unlimited flashcards', included: true },
-      { text: 'Unlimited study timer', included: true },
-      { text: 'Unlimited notes', included: true },
-      { text: 'Detailed analytics', included: true },
-      { text: 'Cloud sync', included: true },
-    ],
-    buttonText: 'Upgrade Now',
-    buttonVariant: 'primary',
-    popular: true,
+    icon: <Target className="h-6 w-6 text-primary" />,
+    title: 'Study Goal',
+    value: '80%',
+    change: 'On track',
   },
   {
-    name: 'Student',
-    price: '$4.99',
-    description: 'Discounted premium for students',
-    features: [
-      { text: 'Unlimited flashcards', included: true },
-      { text: 'Unlimited study timer', included: true },
-      { text: 'Unlimited notes', included: true },
-      { text: 'Basic analytics', included: true },
-      { text: 'Cloud sync', included: true },
-    ],
-    buttonText: 'Verify Student Status',
-    buttonVariant: 'secondary',
-    popular: false,
+    icon: <Clock className="h-6 w-6 text-primary" />,
+    title: 'Time Focused',
+    value: '12h 45m',
+    change: '+1.5h today',
   },
 ];
 
-const faqs = [
-    {
-        question: "Can I switch plans later?",
-        answer: "Yes, you can upgrade or downgrade your plan at any time."
-    },
-    {
-        question: "Is there a free trial?",
-        answer: "We offer a 7-day free trial for our Premium plan."
-    },
-    {
-        question: "How do I cancel my subscription?",
-        answer: "You can cancel your subscription from your account settings. The cancellation will be effective at the end of the current billing period."
-    }
-]
+const recentNotes = [
+  {
+    title: 'Biology Chapter 5',
+    excerpt: 'Cellular respiration is a set of metabolic reactions and processes that take place in the cells of organisms...',
+    image: 'https://placehold.co/600x400.png',
+    dataAiHint: 'biology science'
+  },
+  {
+    title: 'History Midterm Prep',
+    excerpt: 'The key events leading to the American Revolution include the Stamp Act, the Boston Tea Party, and...',
+    image: 'https://placehold.co/600x400.png',
+    dataAiHint: 'history book'
+  },
+  {
+    title: 'Calculus Formulas',
+    excerpt: 'Fundamental Theorem of Calculus, chain rule, product rule, quotient rule...',
+    image: 'https://placehold.co/600x400.png',
+    dataAiHint: 'math equations'
+  },
+];
 
-export default function PricingPage() {
+export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <Header />
       <main className="flex-1 p-6 md:p-10">
-        <div className="text-left mb-10">
-          <h1 className="text-3xl font-bold">Choose Your StudyBuddy Plan</h1>
+        <div className="mb-10">
+          <h1 className="text-3xl font-bold">Welcome back, Alex!</h1>
+          <p className="text-muted-foreground">Let's get back to studying. What are you working on today?</p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {plans.map((plan) => (
-            <Card key={plan.name} className={`bg-card border ${plan.popular ? 'border-primary' : 'border-border'} rounded-xl flex flex-col relative`}>
-              {plan.popular && (
-                <div className="absolute top-0 right-4 -mt-3 bg-primary text-primary-foreground text-xs font-bold uppercase px-3 py-1 rounded-full">Popular</div>
-              )}
-              <CardHeader className="pt-8">
-                <h2 className="text-2xl font-semibold">{plan.name}</h2>
-                <p className="text-muted-foreground">{plan.description}</p>
-                <div className="flex items-baseline pt-4">
-                  <span className="text-4xl font-bold">{plan.price}</span>
-                  <span className="text-muted-foreground">/month</span>
-                </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          {studyActivities.map((activity, index) => (
+            <Card key={index} className="bg-card">
+              <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <CardTitle className="text-sm font-medium">{activity.title}</CardTitle>
+                {activity.icon}
               </CardHeader>
-              <CardContent className="flex-grow flex flex-col justify-between">
-                <ul className="space-y-4 mb-8">
-                  {plan.features.map((feature, index) => (
-                    <li key={index} className="flex items-center">
-                      {feature.included ? (
-                        <Check className="h-5 w-5 text-primary mr-3" />
-                      ) : (
-                        <X className="h-5 w-5 text-muted-foreground mr-3" />
-                      )}
-                      <span>{feature.text}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button 
-                  className="w-full"
-                  variant={plan.buttonVariant as any}
-                  size="lg"
-                  disabled={plan.buttonText === 'Current Plan'}
-                >
-                  {plan.buttonText}
-                </Button>
+              <CardContent>
+                <div className="text-2xl font-bold">{activity.value}</div>
+                <p className="text-xs text-muted-foreground">{activity.change}</p>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        <div className="max-w-4xl">
-            <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
-            <div className="space-y-6">
-                {faqs.map((faq, index) => (
-                    <div key={index}>
-                        <h3 className="font-semibold text-lg">{faq.question}</h3>
-                        <p className="text-muted-foreground mt-1">{faq.answer}</p>
-                    </div>
+        <div className="mb-10">
+            <div className="flex justify-between items-center mb-6">
+                 <h2 className="text-2xl font-bold">Recent Notes</h2>
+                 <Button variant="outline">
+                    <PlusCircle className="mr-2 h-4 w-4" />
+                    New Note
+                 </Button>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {recentNotes.map((note, index) => (
+                    <Card key={index} className="bg-card border border-border rounded-xl flex flex-col overflow-hidden">
+                        <Image src={note.image} alt={note.title} width={600} height={400} className="w-full h-40 object-cover" data-ai-hint={note.dataAiHint} />
+                        <CardHeader>
+                            <CardTitle>{note.title}</CardTitle>
+                        </CardHeader>
+                        <CardContent className="flex-grow">
+                            <CardDescription>{note.excerpt}</CardDescription>
+                        </CardContent>
+                    </Card>
                 ))}
             </div>
         </div>

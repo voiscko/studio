@@ -9,10 +9,18 @@ import {
   SidebarMenuButton,
 } from '@/components/ui/sidebar';
 import { Home, Info, Scale, Tag, Pencil } from 'lucide-react';
-import { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+const menuItems = [
+    { name: 'Home', href: '/', icon: Home },
+    { name: 'Pricing Plans', href: '/pricing', icon: Tag },
+    { name: 'About StudyBuddy', href: '/about', icon: Info },
+    { name: 'Legal/Impressum', href: '/legal', icon: Scale },
+]
 
 export default function AppSidebar() {
-  const [activeItem, setActiveItem] = useState('Pricing Plans');
+  const pathname = usePathname();
 
   return (
     <Sidebar variant="sidebar" collapsible="icon" className="border-r border-border/20 bg-card">
@@ -24,46 +32,22 @@ export default function AppSidebar() {
       </SidebarHeader>
       <SidebarContent>
         <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton 
-              onClick={() => setActiveItem('Home')} 
-              isActive={activeItem === 'Home'}
-              tooltip="Home"
-            >
-              <Home />
-              <span>Home</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton 
-                onClick={() => setActiveItem('About StudyBuddy')}
-                isActive={activeItem === 'About StudyBuddy'}
-                tooltip="About StudyBuddy"
-            >
-              <Info />
-              <span>About StudyBuddy</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton 
-                onClick={() => setActiveItem('Pricing Plans')}
-                isActive={activeItem === 'Pricing Plans'}
-                tooltip="Pricing Plans"
-            >
-              <Tag />
-              <span>Pricing Plans</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton 
-                onClick={() => setActiveItem('Legal/Impressum')}
-                isActive={activeItem === 'Legal/Impressum'}
-                tooltip="Legal/Impressum"
-            >
-              <Scale />
-              <span>Legal/Impressum</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
+          {menuItems.map((item) => (
+             <SidebarMenuItem key={item.name}>
+                <Link href={item.href} passHref legacyBehavior>
+                    <SidebarMenuButton 
+                        asChild
+                        isActive={pathname === item.href}
+                        tooltip={item.name}
+                    >
+                        <>
+                            <item.icon />
+                            <span>{item.name}</span>
+                        </>
+                    </SidebarMenuButton>
+                </Link>
+            </SidebarMenuItem>
+          ))}
         </SidebarMenu>
       </SidebarContent>
     </Sidebar>
