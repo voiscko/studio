@@ -6,20 +6,38 @@ import { useRouter } from 'next/navigation';
 import Header from '@/components/layout/header';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { BookOpen, PlusCircle } from 'lucide-react';
+import { BookOpen, PlusCircle, Brain } from 'lucide-react';
 
 export default function DashboardPage() {
   const [user, setUser] = useState<{ username: string } | null>(null);
+  const [studySessions, setStudySessions] = useState(0);
   const router = useRouter();
 
   useEffect(() => {
     const authData = localStorage.getItem('studybuddy-auth');
     if (authData) {
-      setUser(JSON.parse(authData));
+      const parsedUser = JSON.parse(authData);
+      setUser(parsedUser);
+      
+      const sessionData = localStorage.getItem(`studybuddy-sessions-${parsedUser.username}`);
+      if (sessionData) {
+        setStudySessions(JSON.parse(sessionData));
+      }
+
     } else {
       router.replace('/');
     }
   }, [router]);
+
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem(`studybuddy-sessions-${user.username}`, JSON.stringify(studySessions));
+    }
+  }, [studySessions, user]);
+
+  const handleNewSession = () => {
+    setStudySessions(prev => prev + 1);
+  };
 
   if (!user) {
     return (
@@ -67,11 +85,18 @@ export default function DashboardPage() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Recent Activity</CardTitle>
-                <CardDescription>Your latest study sessions and progress.</CardDescription>
+                <CardTitle>Study Stats</CardTitle>
+                <CardDescription>Your learning progress at a glance.</CardDescription>
               </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">No recent activity yet.</p>
+              <CardContent className="flex flex-col items-center justify-center h-full">
+                <div className="text-center">
+                  <p className="text-6xl font-bold text-primary">{studySessions}</p>
+                  <p className="text-muted-foreground mt-2">Total Sessions Completed</p>
+                </div>
+                <Button onClick={handleNewSession} className="mt-6 w-full">
+                    <Brain className="mr-2 h-4 w-4" />
+                    Start a new study session
+                </Button>
               </CardContent>
             </Card>
             
