@@ -25,16 +25,11 @@ export default function Header() {
             Upgrade
           </Link>
         </Button>
-        <Button variant="default" className="bg-white text-black hover:bg-gray-200 rounded-full">
+        <Button variant="secondary" className="rounded-full">
             Sign Up
         </Button>
-        <Button variant="ghost" className="flex items-center gap-2">
-          <Avatar className="h-8 w-8">
-            <AvatarImage src="https://placehold.co/40x40.png" alt="User profile" data-ai-hint="profile person" />
-            <AvatarFallback>
-              <User />
-            </AvatarFallback>
-          </Avatar>
+        <Button variant="default" className="rounded-full bg-white text-black hover:bg-gray-200">
+          Sign In
         </Button>
       </div>
     </header>
