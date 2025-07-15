@@ -16,7 +16,7 @@ export default function AboutPage() {
           <CardHeader className="text-center">
             <div className="flex justify-center mb-4">
                 <Avatar className="h-24 w-24">
-                    <AvatarImage src="https://placehold.co/100x100.png" alt="Creator's Avatar" data-ai-hint="person code" />
+                    <AvatarImage src="https://github.com/voiscko.png" alt="Creator's Avatar" data-ai-hint="person code" />
                     <AvatarFallback>V</AvatarFallback>
                 </Avatar>
             </div>
@@ -27,7 +27,10 @@ export default function AboutPage() {
           </CardHeader>
           <CardContent className="text-center space-y-6 px-6 pb-8">
             <p className="text-lg">
-              This application is a student project developed by <strong className="text-primary">voiscko</strong>.
+              This application is a student project developed by{' '}
+              <Link href="https://t.me/voiscko" target="_blank" rel="noopener noreferrer" className="text-primary font-bold hover:underline">
+                voiscko
+              </Link>.
             </p>
             <div className="text-muted-foreground">
               <p>It was created as part of a university assignment at the request of Katja Fiscella.</p>
@@ -36,7 +39,9 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
                     <Heart className="h-4 w-4 text-primary" />
-                    <span>Contact: Telegram @voiscko</span>
+                     <Link href="https://t.me/voiscko" target="_blank" rel="noopener noreferrer" className="hover:text-primary">
+                        Contact: Telegram @voiscko
+                    </Link>
                 </div>
                 <div className="flex items-center gap-2">
                     <Github className="h-4 w-4" />
