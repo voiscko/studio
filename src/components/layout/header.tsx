@@ -20,11 +20,6 @@ export default function Header() {
         </Button>
       </div>
       <div className="flex items-center gap-4">
-        <Button variant="ghost" asChild>
-          <Link href="/pricing">
-            Upgrade
-          </Link>
-        </Button>
         <Button variant="secondary" className="rounded-full">
             Sign Up
         </Button>
