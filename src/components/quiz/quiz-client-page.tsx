@@ -151,13 +151,15 @@ export default function QuizClientPage({ questions, topic }: QuizClientPageProps
                         : `The correct answer is: ${currentQuestion.answer}`}
                     </AlertDescription>
                   </Alert>
-                  <div className="relative w-32 h-32 hidden md:block flex-shrink-0">
+                  <div className="hidden md:block flex-shrink-0">
                      <Image 
                         src={isCorrect ? "https://www.pngitem.com/pimgs/m/1-10041_cool-smiley-face-with-shades-thumbs-up-hd.png" : "http://i.imgflip.com/1k26so.jpg"} 
                         alt={isCorrect ? "Cool smiley face meme" : "Y U NO meme"}
-                        layout="fill"
+                        width={128}
+                        height={128}
                         objectFit="contain"
                         className="rounded-lg"
+                        unoptimized
                      />
                   </div>
                 </div>
