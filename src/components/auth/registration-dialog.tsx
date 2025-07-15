@@ -80,6 +80,9 @@ export default function RegistrationDialog({ planName, trigger, open, onOpenChan
       password: formData.password
     };
     localStorage.setItem('studybuddy-user', JSON.stringify(user));
+    localStorage.setItem('studybuddy-auth', JSON.stringify({ username: user.username }));
+    // Manually trigger storage event to update header
+    window.dispatchEvent(new Event('storage'));
 
     toast({
         title: "Registration Successful!",

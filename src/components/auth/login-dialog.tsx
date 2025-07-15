@@ -14,13 +14,17 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { useRouter } from 'next/navigation';
 
-export default function LoginDialog() {
+interface LoginDialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  onSuccess: () => void;
+}
+
+export default function LoginDialog({ open, onOpenChange, onSuccess }: LoginDialogProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { toast } = useToast();
-  const router = useRouter();
 
   const handleLogin = () => {
     const storedUser = localStorage.getItem('studybuddy-user');
@@ -29,10 +33,12 @@ export default function LoginDialog() {
       if (user.username === email && user.password === password) {
         toast({
           title: 'Login Successful',
-          description: 'Welcome back!',
+          description: `Welcome back, ${user.username}!`,
         });
-        // Here you would typically redirect to a dashboard
-        // For now, we just close the dialog
+        localStorage.setItem('studybuddy-auth', JSON.stringify({ username: user.username }));
+        // Manually trigger storage event to update header
+        window.dispatchEvent(new Event('storage'));
+        onSuccess();
       } else {
         toast({
           variant: 'destructive',
@@ -50,7 +56,7 @@ export default function LoginDialog() {
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
         <Button variant="default" className="rounded-full bg-white text-black hover:bg-gray-200">
           Sign In

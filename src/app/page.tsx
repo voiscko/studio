@@ -9,6 +9,7 @@ import { BookOpen, Target, Clock, PlusCircle, Cookie, ArrowRight, Star } from 'l
 import Image from 'next/image';
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { useRouter } from 'next/navigation';
 
 
 const features = [
@@ -58,13 +59,19 @@ const COOKIE_CONSENT_KEY = 'studybuddy-cookie-consent';
 
 export default function HomePage() {
   const [showCookieBanner, setShowCookieBanner] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
+    // Redirect to dashboard if logged in
+    if (localStorage.getItem('studybuddy-auth')) {
+      router.replace('/dashboard');
+      return;
+    }
     const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
     if (!consent) {
       setShowCookieBanner(true);
     }
-  }, []);
+  }, [router]);
 
   const handleAcceptCookies = () => {
     localStorage.setItem(COOKIE_CONSENT_KEY, 'true');
