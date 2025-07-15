@@ -153,12 +153,12 @@ export default function QuizClientPage({ questions, topic }: QuizClientPageProps
                   </Alert>
                   <div className="w-40 h-40 relative hidden md:block">
                      <Image 
-                        src={isCorrect ? "https://placehold.co/200x200.png" : "http://i.imgflip.com/1k26so.jpg"} 
-                        alt={isCorrect ? "Happy meme" : "Y U NO meme"}
-                        data-ai-hint={isCorrect ? "happy success" : "sad fail"}
+                        src={isCorrect ? "https://www.pngitem.com/pimgs/m/1-10041_cool-smiley-face-with-shades-thumbs-up-hd.png" : "http://i.imgflip.com/1k26so.jpg"} 
+                        alt={isCorrect ? "Cool smiley face meme" : "Y U NO meme"}
+                        data-ai-hint={isCorrect ? "cool success" : "sad fail"}
                         width={200}
                         height={200}
-                        className="rounded-lg object-cover"
+                        className="rounded-lg object-contain"
                      />
                   </div>
                 </div>
