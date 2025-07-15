@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
 import { CheckCircle, XCircle, ArrowRight, RotateCw, Trophy } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import Image from 'next/image';
 
 interface Question {
   question: string;
@@ -140,15 +141,27 @@ export default function QuizClientPage({ questions, topic }: QuizClientPageProps
               </RadioGroup>
 
               {isAnswered && (
-                <Alert className={`mt-6 ${isCorrect ? 'border-primary' : 'border-destructive'}`}>
-                    {isCorrect ? <CheckCircle className="h-4 w-4 text-primary" /> : <XCircle className="h-4 w-4 text-destructive" />}
-                  <AlertTitle>{isCorrect ? 'Correct!' : 'Incorrect'}</AlertTitle>
-                  <AlertDescription>
-                    {isCorrect
-                      ? 'Great job! You selected the right answer.'
-                      : `The correct answer is: ${currentQuestion.answer}`}
-                  </AlertDescription>
-                </Alert>
+                <div className="mt-6 flex items-center gap-6">
+                  <Alert className={`flex-1 ${isCorrect ? 'border-primary' : 'border-destructive'}`}>
+                      {isCorrect ? <CheckCircle className="h-4 w-4 text-primary" /> : <XCircle className="h-4 w-4 text-destructive" />}
+                    <AlertTitle>{isCorrect ? 'Correct!' : 'Incorrect'}</AlertTitle>
+                    <AlertDescription>
+                      {isCorrect
+                        ? 'Great job! You selected the right answer.'
+                        : `The correct answer is: ${currentQuestion.answer}`}
+                    </AlertDescription>
+                  </Alert>
+                  <div className="w-40 h-40 relative hidden md:block">
+                     <Image 
+                        src={isCorrect ? "https://placehold.co/200x200.png" : "https://placehold.co/200x200.png"} 
+                        alt={isCorrect ? "Happy meme" : "Sad meme"}
+                        data-ai-hint={isCorrect ? "happy success" : "sad fail"}
+                        width={200}
+                        height={200}
+                        className="rounded-lg object-cover"
+                     />
+                  </div>
+                </div>
               )}
 
               <div className="mt-8 flex justify-end">
