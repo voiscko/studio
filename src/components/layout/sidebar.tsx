@@ -17,7 +17,7 @@ const menuItems = [
     { name: 'Home', href: '/', icon: Home },
     { name: 'About StudyBuddy', href: '/about', icon: Info },
     { name: 'Pricing Plans', href: '/pricing', icon: Tag },
-    { name: 'Legal/Impressum', href: '/legal', icon: Scale },
+    { name: 'Legal Notice', href: '/legal', icon: Scale },
 ]
 
 export default function AppSidebar() {
