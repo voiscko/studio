@@ -77,15 +77,17 @@ export default function HomePage() {
       <main className="flex-1 flex flex-col items-center">
         {/* Hero Section */}
         <section className="text-center py-20 px-6 w-full">
-          <h1 className="text-5xl font-extrabold tracking-tight mb-4">
-            Your Ultimate Companion for Academic Success
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            StudyBuddy provides the tools you need to study smarter, not harder. Organize notes, track progress, and ace your exams.
-          </p>
-          <Button size="lg" className="rounded-full">
-            Get Started for Free <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-5xl font-extrabold tracking-tight mb-4">
+              Your Ultimate Companion for Academic Success
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+              StudyBuddy provides the tools you need to study smarter, not harder. Organize notes, track progress, and ace your exams.
+            </p>
+            <Button size="lg" className="rounded-full">
+              Get Started for Free <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </div>
         </section>
 
         {/* Features Section */}
@@ -139,7 +141,7 @@ export default function HomePage() {
 
         {/* Final CTA Section */}
         <section className="bg-primary/90 text-primary-foreground text-center py-20 px-6 w-full">
-            <div className="max-w-3xl mx-auto">
+            <div className="max-w-4xl mx-auto">
                 <h2 className="text-3xl font-bold mb-4">Ready to Boost Your Grades?</h2>
                 <p className="max-w-xl mx-auto mb-8">
                     Join thousands of students who are already studying smarter with StudyBuddy.
