@@ -141,7 +141,7 @@ export default function QuizClientPage({ questions, topic }: QuizClientPageProps
               </RadioGroup>
 
               {isAnswered && (
-                <div className="mt-6 flex items-center gap-6">
+                <div className="mt-6 flex items-center justify-between gap-6">
                   <Alert className={`flex-1 ${isCorrect ? 'border-primary' : 'border-destructive'}`}>
                       {isCorrect ? <CheckCircle className="h-4 w-4 text-primary" /> : <XCircle className="h-4 w-4 text-destructive" />}
                     <AlertTitle>{isCorrect ? 'Correct!' : 'Incorrect'}</AlertTitle>
@@ -151,14 +151,13 @@ export default function QuizClientPage({ questions, topic }: QuizClientPageProps
                         : `The correct answer is: ${currentQuestion.answer}`}
                     </AlertDescription>
                   </Alert>
-                  <div className="w-40 h-40 relative hidden md:block">
+                  <div className="relative w-32 h-32 hidden md:block flex-shrink-0">
                      <Image 
                         src={isCorrect ? "https://www.pngitem.com/pimgs/m/1-10041_cool-smiley-face-with-shades-thumbs-up-hd.png" : "http://i.imgflip.com/1k26so.jpg"} 
                         alt={isCorrect ? "Cool smiley face meme" : "Y U NO meme"}
-                        data-ai-hint={isCorrect ? "cool success" : "sad fail"}
-                        width={200}
-                        height={200}
-                        className="rounded-lg object-contain"
+                        layout="fill"
+                        objectFit="contain"
+                        className="rounded-lg"
                      />
                   </div>
                 </div>
