@@ -153,7 +153,7 @@ export default function QuizClientPage({ questions, topic }: QuizClientPageProps
                   </Alert>
                   <div className="w-40 h-40 relative hidden md:block">
                      <Image 
-                        src={isCorrect ? "https://placehold.co/200x200.png" : "https://i.imgflip.com/1k26so.jpg"} 
+                        src={isCorrect ? "https://placehold.co/200x200.png" : "http://i.imgflip.com/1k26so.jpg"} 
                         alt={isCorrect ? "Happy meme" : "Y U NO meme"}
                         data-ai-hint={isCorrect ? "happy success" : "sad fail"}
                         width={200}
