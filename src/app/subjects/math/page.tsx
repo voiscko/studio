@@ -4,7 +4,7 @@
 import Header from '@/components/layout/header';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Sigma, SquareRoot } from 'lucide-react';
+import { ArrowRight, Sigma, Calculator } from 'lucide-react';
 import Link from 'next/link';
 
 const mathTopics = [
@@ -17,7 +17,7 @@ const mathTopics = [
     {
         name: 'Area Calculation',
         description: 'Learn to calculate the area of various geometric shapes.',
-        icon: <SquareRoot className="h-8 w-8 text-primary" />,
+        icon: <Calculator className="h-8 w-8 text-primary" />,
         href: '/subjects/math/area-calculation',
     }
 ];
