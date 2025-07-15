@@ -14,8 +14,8 @@ import { usePathname } from 'next/navigation';
 
 const menuItems = [
     { name: 'Home', href: '/', icon: Home },
-    { name: 'Pricing Plans', href: '/pricing', icon: Tag },
     { name: 'About StudyBuddy', href: '/about', icon: Info },
+    { name: 'Pricing Plans', href: '/pricing', icon: Tag },
     { name: 'Legal/Impressum', href: '/legal', icon: Scale },
 ]
 
@@ -36,14 +36,12 @@ export default function AppSidebar() {
              <SidebarMenuItem key={item.name}>
                 <Link href={item.href} passHref legacyBehavior>
                     <SidebarMenuButton 
-                        asChild
+                        as="a"
                         isActive={pathname === item.href}
                         tooltip={item.name}
                     >
-                        <>
-                            <item.icon />
-                            <span>{item.name}</span>
-                        </>
+                        <item.icon />
+                        <span>{item.name}</span>
                     </SidebarMenuButton>
                 </Link>
             </SidebarMenuItem>
