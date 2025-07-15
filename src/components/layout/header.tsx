@@ -1,7 +1,7 @@
-import { ChevronLeft, ChevronRight, User } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Link from 'next/link';
+import LoginDialog from '@/components/auth/login-dialog';
 
 export default function Header() {
   return (
@@ -20,12 +20,10 @@ export default function Header() {
         </Button>
       </div>
       <div className="flex items-center gap-4">
-        <Button variant="secondary" className="rounded-full">
-            Sign Up
+        <Button variant="secondary" className="rounded-full" asChild>
+            <Link href="/pricing">Sign Up</Link>
         </Button>
-        <Button variant="default" className="rounded-full bg-white text-black hover:bg-gray-200">
-          Sign In
-        </Button>
+        <LoginDialog />
       </div>
     </header>
   );

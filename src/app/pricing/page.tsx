@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Check, X } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import RegistrationDialog from '@/components/auth/registration-dialog';
 
 const plans = [
   {
@@ -18,7 +19,7 @@ const plans = [
       { text: 'No progress analytics', included: false },
       { text: 'No cloud sync', included: false },
     ],
-    buttonText: 'Current Plan',
+    buttonText: 'Get Started',
     buttonVariant: 'secondary',
     popular: false,
   },
@@ -111,14 +112,7 @@ export default function PricingPage() {
                       </li>
                     ))}
                   </ul>
-                  <Button 
-                    className="w-full"
-                    variant={plan.buttonVariant as any}
-                    size="lg"
-                    disabled={plan.buttonText === 'Current Plan'}
-                  >
-                    {plan.buttonText}
-                  </Button>
+                  <RegistrationDialog planName={plan.name} triggerButtonVariant={plan.buttonVariant as any} triggerButtonText={plan.buttonText} />
                 </CardContent>
               </Card>
             ))}
