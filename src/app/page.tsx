@@ -80,7 +80,7 @@ export default function HomePage() {
           <h1 className="text-5xl font-extrabold tracking-tight mb-4">
             Your Ultimate Companion for Academic Success
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
             StudyBuddy provides the tools you need to study smarter, not harder. Organize notes, track progress, and ace your exams.
           </p>
           <Button size="lg" className="rounded-full">
@@ -90,7 +90,7 @@ export default function HomePage() {
 
         {/* Features Section */}
         <section className="bg-transparent py-20 px-6 w-full">
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12">Everything You Need to Succeed</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {features.map((feature, index) => (
@@ -110,7 +110,7 @@ export default function HomePage() {
 
         {/* Testimonials Section */}
         <section className="py-20 px-6 bg-transparent w-full">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-6xl mx-auto">
                 <h2 className="text-3xl font-bold text-center mb-12">Loved by Students Everywhere</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {testimonials.map((testimonial, index) => (
@@ -139,7 +139,7 @@ export default function HomePage() {
 
         {/* Final CTA Section */}
         <section className="bg-primary/90 text-primary-foreground text-center py-20 px-6 w-full">
-            <div className="max-w-xl mx-auto">
+            <div className="max-w-3xl mx-auto">
                 <h2 className="text-3xl font-bold mb-4">Ready to Boost Your Grades?</h2>
                 <p className="max-w-xl mx-auto mb-8">
                     Join thousands of students who are already studying smarter with StudyBuddy.

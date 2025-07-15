@@ -12,7 +12,7 @@ export default function AboutPage() {
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <Header />
       <main className="flex-1 flex items-center justify-center p-6 md:p-10">
-        <Card className="w-full max-w-2xl bg-card border border-border rounded-xl shadow-lg">
+        <Card className="w-full max-w-4xl bg-card border border-border rounded-xl shadow-lg">
           <CardHeader className="text-center">
             <div className="flex justify-center mb-4">
                 <Avatar className="h-24 w-24">
