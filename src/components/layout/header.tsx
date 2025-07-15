@@ -1,9 +1,19 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 import LoginDialog from '@/components/auth/login-dialog';
+import RegistrationDialog from '@/components/auth/registration-dialog';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
+  const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
+  const router = useRouter();
+
+  const handleRegistrationSuccess = () => {
+    setIsRegistrationOpen(false);
+    router.push('/pricing');
+  };
+
   return (
     <header className="flex items-center justify-between p-4 sm:px-6 bg-background/80 backdrop-blur-sm sticky top-0 z-40">
       <div className="flex items-center gap-2">
@@ -20,9 +30,16 @@ export default function Header() {
         </Button>
       </div>
       <div className="flex items-center gap-4">
-        <Button variant="secondary" className="rounded-full" asChild>
-            <Link href="/pricing">Sign Up</Link>
-        </Button>
+        <RegistrationDialog
+            open={isRegistrationOpen}
+            onOpenChange={setIsRegistrationOpen}
+            onSuccess={handleRegistrationSuccess}
+            trigger={
+              <Button variant="secondary" className="rounded-full">
+                Sign Up
+              </Button>
+            }
+        />
         <LoginDialog />
       </div>
     </header>
