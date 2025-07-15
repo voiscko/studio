@@ -72,7 +72,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground">
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-primary/20 via-background to-background text-foreground">
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
@@ -83,18 +83,18 @@ export default function HomePage() {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
             StudyBuddy provides the tools you need to study smarter, not harder. Organize notes, track progress, and ace your exams.
           </p>
-          <Button size="lg">
+          <Button size="lg" className="rounded-full">
             Get Started for Free <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </section>
 
         {/* Features Section */}
-        <section className="bg-card py-20 px-6">
+        <section className="bg-transparent py-20 px-6">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12">Everything You Need to Succeed</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {features.map((feature, index) => (
-                <div key={index} className="text-center">
+                <div key={index} className="text-center p-6 rounded-lg bg-card/50 hover:bg-card/80 transition-colors">
                   <div className="flex justify-center mb-4">
                     <div className="bg-background p-4 rounded-full">
                       {feature.icon}
@@ -109,12 +109,12 @@ export default function HomePage() {
         </section>
 
         {/* Testimonials Section */}
-        <section className="py-20 px-6">
+        <section className="py-20 px-6 bg-transparent">
             <div className="max-w-5xl mx-auto">
                 <h2 className="text-3xl font-bold text-center mb-12">Loved by Students Everywhere</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {testimonials.map((testimonial, index) => (
-                        <Card key={index} className="bg-card border-border flex flex-col justify-between">
+                        <Card key={index} className="bg-card/50 border-border/50 flex flex-col justify-between hover:bg-card/80 transition-colors">
                             <CardContent className="pt-6">
                                 <div className="flex mb-4">
                                     {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 text-primary fill-current" />)}
@@ -138,12 +138,12 @@ export default function HomePage() {
         </section>
 
         {/* Final CTA Section */}
-        <section className="bg-primary text-primary-foreground text-center py-20 px-6">
+        <section className="bg-primary/90 text-primary-foreground text-center py-20 px-6">
             <h2 className="text-3xl font-bold mb-4">Ready to Boost Your Grades?</h2>
             <p className="max-w-xl mx-auto mb-8">
                 Join thousands of students who are already studying smarter with StudyBuddy.
             </p>
-            <Button variant="secondary" size="lg" className="bg-white text-primary hover:bg-gray-200">
+            <Button variant="secondary" size="lg" className="bg-white text-primary hover:bg-gray-200 rounded-full">
                 Sign Up Now
             </Button>
         </section>
