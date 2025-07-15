@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} dark`} suppressHydrationWarning>
       <head>
       </head>
-      <body className="font-sans antialiased bg-background">
+      <body className="font-sans antialiased bg-background" suppressHydrationWarning>
         <SidebarProvider>
           <div className="flex">
             <AppSidebar />
