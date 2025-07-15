@@ -9,7 +9,7 @@ export default function LegalPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <Header />
-      <main className="flex-1 p-6 md:p-10 flex justify-center">
+      <main className="flex-1 p-6 md:p-10 flex flex-col items-center justify-center">
         <Card className="w-full max-w-4xl bg-card border border-border rounded-xl shadow-lg">
           <CardHeader>
             <CardTitle className="text-3xl font-bold">Impressum (Legal Notice)</CardTitle>

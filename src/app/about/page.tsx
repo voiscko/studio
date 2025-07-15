@@ -11,7 +11,7 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <Header />
-      <main className="flex-1 p-6 md:p-10 flex items-center justify-center">
+      <main className="flex-1 p-6 md:p-10 flex flex-col items-center justify-center">
         <Card className="w-full max-w-2xl bg-card border border-border rounded-xl shadow-lg">
           <CardHeader className="text-center">
             <div className="flex justify-center mb-4">
