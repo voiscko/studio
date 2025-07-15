@@ -5,51 +5,54 @@ import { useState, useEffect } from 'react';
 import Header from '@/components/layout/header';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { BookOpen, Target, Clock, PlusCircle, Cookie } from 'lucide-react';
+import { BookOpen, Target, Clock, PlusCircle, Cookie, ArrowRight, Star } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
-const studyActivities = [
+
+const features = [
   {
-    icon: <BookOpen className="h-6 w-6 text-primary" />,
-    title: 'Flashcards Reviewed',
-    value: '1,250',
-    change: '+50 today',
+    icon: <BookOpen className="h-8 w-8 text-primary" />,
+    title: 'Smart Flashcards',
+    description: 'Create, share, and study with intelligent flashcards that adapt to your learning pace.',
   },
   {
-    icon: <Target className="h-6 w-6 text-primary" />,
-    title: 'Study Goal',
-    value: '80%',
-    change: 'On track',
+    icon: <Target className="h-8 w-8 text-primary" />,
+    title: 'Goal Tracking',
+    description: 'Set and track your study goals to stay motivated and measure your progress effectively.',
   },
   {
-    icon: <Clock className="h-6 w-6 text-primary" />,
-    title: 'Time Focused',
-    value: '12h 45m',
-    change: '+1.5h today',
+    icon: <Clock className="h-8 w-8 text-primary" />,
+    title: 'Focus Timer',
+    description: 'Use the integrated Pomodoro timer to manage your study sessions and maximize focus.',
   },
 ];
 
-const recentNotes = [
+const testimonials = [
   {
-    title: 'Biology Chapter 5',
-    excerpt: 'Cellular respiration is a set of metabolic reactions and processes that take place in the cells of organisms...',
-    image: 'https://placehold.co/600x400.png',
-    dataAiHint: 'biology science'
+    name: 'Sarah L.',
+    role: 'University Student',
+    quote: "StudyBuddy has been a game-changer for my exam preparation. The smart flashcards are brilliant!",
+    avatar: 'https://placehold.co/40x40.png',
+    dataAiHint: 'person student'
   },
   {
-    title: 'History Midterm Prep',
-    excerpt: 'The key events leading to the American Revolution include the Stamp Act, the Boston Tea Party, and...',
-    image: 'https://placehold.co/600x400.png',
-    dataAiHint: 'history book'
+    name: 'Mike T.',
+    role: 'High School Student',
+    quote: "I love the focus timer! It helps me stay on track and I feel so much more productive.",
+    avatar: 'https://placehold.co/40x40.png',
+    dataAiHint: 'person student'
   },
   {
-    title: 'Calculus Formulas',
-    excerpt: 'Fundamental Theorem of Calculus, chain rule, product rule, quotient rule...',
-    image: 'https://placehold.co/600x400.png',
-    dataAiHint: 'math equations'
+    name: 'Jessica P.',
+    role: 'Medical Student',
+    quote: "The best study app I've used. It's intuitive, powerful, and has all the features I need.",
+    avatar: 'https://placehold.co/40x40.png',
+    dataAiHint: 'person student'
   },
 ];
+
 
 const COOKIE_CONSENT_KEY = 'studybuddy-cookie-consent';
 
@@ -71,49 +74,79 @@ export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <Header />
-      <main className="flex-1 p-6 md:p-10">
-        <div className="mb-10">
-          <h1 className="text-3xl font-bold">Welcome back, Alex!</h1>
-          <p className="text-muted-foreground">Let's get back to studying. What are you working on today?</p>
-        </div>
+      <main className="flex-1">
+        {/* Hero Section */}
+        <section className="text-center py-20 px-6">
+          <h1 className="text-5xl font-extrabold tracking-tight mb-4">
+            Your Ultimate Companion for Academic Success
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+            StudyBuddy provides the tools you need to study smarter, not harder. Organize notes, track progress, and ace your exams.
+          </p>
+          <Button size="lg">
+            Get Started for Free <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
+        </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          {studyActivities.map((activity, index) => (
-            <Card key={index} className="bg-card">
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium">{activity.title}</CardTitle>
-                {activity.icon}
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{activity.value}</div>
-                <p className="text-xs text-muted-foreground">{activity.change}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        {/* Features Section */}
+        <section className="bg-card py-20 px-6">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-12">Everything You Need to Succeed</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {features.map((feature, index) => (
+                <div key={index} className="text-center">
+                  <div className="flex justify-center mb-4">
+                    <div className="bg-background p-4 rounded-full">
+                      {feature.icon}
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                  <p className="text-muted-foreground">{feature.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-        <div className="mb-10">
-            <div className="flex justify-between items-center mb-6">
-                 <h2 className="text-2xl font-bold">Recent Notes</h2>
-                 <Button variant="outline">
-                    <PlusCircle className="mr-2 h-4 w-4" />
-                    New Note
-                 </Button>
+        {/* Testimonials Section */}
+        <section className="py-20 px-6">
+            <div className="max-w-5xl mx-auto">
+                <h2 className="text-3xl font-bold text-center mb-12">Loved by Students Everywhere</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {testimonials.map((testimonial, index) => (
+                        <Card key={index} className="bg-card border-border flex flex-col justify-between">
+                            <CardContent className="pt-6">
+                                <div className="flex mb-4">
+                                    {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 text-primary fill-current" />)}
+                                </div>
+                                <p className="text-foreground mb-4">"{testimonial.quote}"</p>
+                            </CardContent>
+                            <CardHeader className="flex flex-row items-center gap-4 pt-0">
+                                <Avatar>
+                                    <AvatarImage src={testimonial.avatar} alt={testimonial.name} data-ai-hint={testimonial.dataAiHint} />
+                                    <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                                </Avatar>
+                                <div>
+                                    <CardTitle className="text-base">{testimonial.name}</CardTitle>
+                                    <CardDescription>{testimonial.role}</CardDescription>
+                                </div>
+                            </CardHeader>
+                        </Card>
+                    ))}
+                </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {recentNotes.map((note, index) => (
-                    <Card key={index} className="bg-card border border-border rounded-xl flex flex-col overflow-hidden">
-                        <Image src={note.image} alt={note.title} width={600} height={400} className="w-full h-40 object-cover" data-ai-hint={note.dataAiHint} />
-                        <CardHeader>
-                            <CardTitle>{note.title}</CardTitle>
-                        </CardHeader>
-                        <CardContent className="flex-grow">
-                            <CardDescription>{note.excerpt}</CardDescription>
-                        </CardContent>
-                    </Card>
-                ))}
-            </div>
-        </div>
+        </section>
+
+        {/* Final CTA Section */}
+        <section className="bg-primary text-primary-foreground text-center py-20 px-6">
+            <h2 className="text-3xl font-bold mb-4">Ready to Boost Your Grades?</h2>
+            <p className="max-w-xl mx-auto mb-8">
+                Join thousands of students who are already studying smarter with StudyBuddy.
+            </p>
+            <Button variant="secondary" size="lg" className="bg-white text-primary hover:bg-gray-200">
+                Sign Up Now
+            </Button>
+        </section>
       </main>
       
       {showCookieBanner && (
