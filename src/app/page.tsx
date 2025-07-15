@@ -1,10 +1,13 @@
+
 'use client';
 
+import { useState, useEffect } from 'react';
 import Header from '@/components/layout/header';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { BookOpen, Target, Clock, PlusCircle } from 'lucide-react';
+import { BookOpen, Target, Clock, PlusCircle, Cookie } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const studyActivities = [
   {
@@ -48,7 +51,23 @@ const recentNotes = [
   },
 ];
 
+const COOKIE_CONSENT_KEY = 'studybuddy-cookie-consent';
+
 export default function HomePage() {
+  const [showCookieBanner, setShowCookieBanner] = useState(false);
+
+  useEffect(() => {
+    const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
+    if (!consent) {
+      setShowCookieBanner(true);
+    }
+  }, []);
+
+  const handleAcceptCookies = () => {
+    localStorage.setItem(COOKIE_CONSENT_KEY, 'true');
+    setShowCookieBanner(false);
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <Header />
@@ -95,8 +114,26 @@ export default function HomePage() {
                 ))}
             </div>
         </div>
-
       </main>
+      
+      {showCookieBanner && (
+        <div className="fixed bottom-0 left-0 right-0 bg-card border-t border-border p-4 z-50">
+          <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-start gap-3">
+              <Cookie className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+              <p className="text-sm text-muted-foreground">
+                This is a student project for demonstration purposes and not a real, commercial product. By using this site, you acknowledge this. For more details, please see our{' '}
+                <Link href="/legal" className="text-primary hover:underline">
+                  Legal Notice
+                </Link>.
+              </p>
+            </div>
+            <Button onClick={handleAcceptCookies} size="sm">
+              Accept & Close
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
