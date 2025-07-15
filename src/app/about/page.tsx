@@ -4,7 +4,8 @@
 import Header from '@/components/layout/header';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Heart } from 'lucide-react';
+import { Github, Heart } from 'lucide-react';
+import Link from 'next/link';
 
 export default function AboutPage() {
   return (
@@ -32,9 +33,17 @@ export default function AboutPage() {
               <p>It was created as part of a university assignment at the request of Katja Fiscella.</p>
               <p className="mt-4">This project demonstrates the implementation of modern web technologies to create a helpful study tool.</p>
             </div>
-            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-                <Heart className="h-4 w-4 text-primary" />
-                <span>Contact: Telegram @voiscko</span>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                    <Heart className="h-4 w-4 text-primary" />
+                    <span>Contact: Telegram @voiscko</span>
+                </div>
+                <div className="flex items-center gap-2">
+                    <Github className="h-4 w-4" />
+                     <Link href="https://github.com/voiscko" target="_blank" rel="noopener noreferrer" className="hover:text-primary">
+                        GitHub: voiscko
+                    </Link>
+                </div>
             </div>
           </CardContent>
         </Card>
