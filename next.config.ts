@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
         hostname: 'i.imgflip.com',
         port: '',
         pathname: '/**',
-      }
+      },
     ],
   },
 };
