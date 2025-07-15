@@ -55,8 +55,8 @@ export default function Header() {
   const handleSignOut = () => {
     localStorage.removeItem('studybuddy-auth');
     localStorage.removeItem('studybuddy-user');
-    setAuth(null);
     router.push('/');
+    setAuth(null);
   }
 
   return (
