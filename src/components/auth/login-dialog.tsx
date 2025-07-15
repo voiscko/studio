@@ -27,6 +27,18 @@ export default function LoginDialog({ open, onOpenChange, onSuccess }: LoginDial
   const { toast } = useToast();
 
   const handleLogin = () => {
+    // Demo user
+    if (email === 'admin' && password === '1234') {
+        toast({
+            title: 'Login Successful',
+            description: `Welcome back, admin!`,
+        });
+        localStorage.setItem('studybuddy-auth', JSON.stringify({ username: 'admin' }));
+        window.dispatchEvent(new Event('storage'));
+        onSuccess();
+        return;
+    }
+
     const storedUser = localStorage.getItem('studybuddy-user');
     if (storedUser) {
       const user = JSON.parse(storedUser);
@@ -50,7 +62,7 @@ export default function LoginDialog({ open, onOpenChange, onSuccess }: LoginDial
       toast({
         variant: 'destructive',
         title: 'Login Failed',
-        description: 'No registered user found. Please sign up.',
+        description: 'Invalid username or password. Please sign up.',
       });
     }
   };
@@ -66,7 +78,7 @@ export default function LoginDialog({ open, onOpenChange, onSuccess }: LoginDial
         <DialogHeader>
           <DialogTitle>Sign In</DialogTitle>
           <DialogDescription>
-            Enter your credentials to access your account.
+            Enter your credentials to access your account. (Hint: admin/1234)
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
